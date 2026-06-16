@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --color-hotel-dark: #1a1a1a;
+  --color-hotel-gold: #c5a059;
+  --color-hotel-green: #2d4a22;
+  --color-hotel-light: #f9f9f9;
+}
+
+@layer base {
+  body {
+    @apply antialiased text-gray-900;
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('/images/food-bg.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .glass-panel-dark {
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+.blink {
+  animation: blinker 1.5s linear infinite;
+}
+@keyframes blinker {
+  50% { opacity: 0; }
+}
