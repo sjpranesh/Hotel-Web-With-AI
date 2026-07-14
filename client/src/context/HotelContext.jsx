@@ -67,7 +67,7 @@ export const HotelProvider = ({ children }) => {
   useEffect(() => {
     fetchMenu();
     fetchCategories();
-    
+
     const adminToken = localStorage.getItem('admin_token');
     if (adminToken) setIsAdmin(true);
   }, []);
