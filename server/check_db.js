@@ -1,15 +1,12 @@
-const mongoose = require('mongoose');
-const Category = require('./models/Category');
-const User = require('./models/User');
-mongoose.connect('mongodb://localhost:27017/quickserve_qr')
-  .then(async () => {
-    const cats = await Category.find();
-    console.log('Categories count:', cats.length);
+const mongoose = require("mongoose");
 
-    const users = await User.find();
-
-    console.log('Users:');
-    console.log(users);
-
+mongoose
+  .connect(process.env.MONGODB_URI || "mongodb+srv://sjpranesh:Pranesh123@cluster0.sjw6pwn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+  .then(() => {
+    console.log("✅ Connected!");
     process.exit(0);
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
   });
