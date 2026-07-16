@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
   console.log("========== MENU API CALLED ==========");
 
   try {
-    const menu = await Menu.find();
+    const menu = await MenuItem.find();
 
     console.log("Menu items found:", menu.length);
     console.log(menu);
@@ -15,6 +15,7 @@ router.get("/", async (req, res) => {
     res.status(200).json(menu);
   } catch (error) {
     console.error("MENU ERROR:", error);
+
     res.status(500).json({
       success: false,
       message: error.message,
