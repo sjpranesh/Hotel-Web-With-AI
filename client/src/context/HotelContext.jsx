@@ -2,8 +2,8 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { io } from 'socket.io-client';
 
-const API_URL = 'https://hotel-web-with-ai-api-server.onrender.com/api';
-const SOCKET_URL = 'https://hotel-web-with-ai-api-server.onrender.com';
+const API_URL = 'http://localhost:5000/api';
+const SOCKET_URL = 'http://localhost:5000';
 
 const HotelContext = createContext();
 
