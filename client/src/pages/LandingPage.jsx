@@ -25,7 +25,7 @@ const LandingPage = () => {
     e.preventDefault();
     setAuthError('');
     try {
-      const res = await fetch(`${API_URL || 'http://localhost:5000/api'}/auth/login`, {
+      const res = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -50,11 +50,11 @@ const LandingPage = () => {
           <button onClick={() => setModalType(null)} className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors">
             <X size={20} />
           </button>
-          
+
           <h3 className="text-2xl font-playfair font-bold text-white mb-8 text-center">
             {modalType === 'table' ? t('Select Table') : t(`${modalType.charAt(0).toUpperCase() + modalType.slice(1)} Portal`)}
           </h3>
-          
+
           {modalType === 'table' ? (
             <div className="grid grid-cols-5 gap-3">
               {[...Array(20)].map((_, i) => (
@@ -97,8 +97,8 @@ const LandingPage = () => {
         <div className="flex items-center gap-4">
           {/* Premium Language Dropdown */}
           <div className="relative flex items-center">
-            <select 
-              value={language || 'en'} 
+            <select
+              value={language || 'en'}
               onChange={(e) => setLanguage(e.target.value)}
               className="appearance-none bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-full pl-8 pr-5 py-1.5 text-xs font-semibold focus:outline-none focus:border-purple-500 transition-all duration-300 font-outfit cursor-pointer"
             >
@@ -114,11 +114,11 @@ const LandingPage = () => {
             </div>
           </div>
 
-          <button onClick={() => { setModalType('kitchen'); setEmail('kitchen@quickserve.com'); setPassword(''); }} 
+          <button onClick={() => { setModalType('kitchen'); setEmail('kitchen@quickserve.com'); setPassword(''); }}
             className="text-xs font-medium text-gray-400 hover:text-white flex items-center gap-2 px-4 py-2 rounded-full hover:bg-white/10 transition-all">
             <ChefHat size={14} /> {t('Kitchen')}
           </button>
-          <button onClick={() => { setModalType('admin'); setEmail('admin@quickserve.com'); setPassword(''); }} 
+          <button onClick={() => { setModalType('admin'); setEmail('admin@quickserve.com'); setPassword(''); }}
             className="text-xs font-medium text-gray-400 hover:text-white flex items-center gap-2 px-4 py-2 rounded-full hover:bg-white/10 transition-all">
             <UserCheck size={14} /> {t('Admin')}
           </button>
@@ -133,25 +133,25 @@ const LandingPage = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/90 via-[#050505]/70 to-[#050505]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent" />
         </div>
-        
+
         {/* Content */}
         <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center mt-12">
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} 
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}
             className="flex gap-1.5 mb-8">
             {[...Array(5)].map((_, i) => <Star key={i} size={12} className="text-amber-400 fill-amber-400/50" />)}
           </motion.div>
-          
+
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }}
             className="font-playfair text-5xl md:text-7xl font-semibold leading-[1.1] mb-6 text-white tracking-tight">
             {t('A Symphony of')} <br />
             <span className="text-gray-400 italic">{t('Taste & Elegance')}</span>
           </motion.h1>
-          
+
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.4 }}
             className="text-gray-400 text-sm md:text-base font-light tracking-wide max-w-xl mb-12 leading-relaxed">
             {t('Experience culinary mastery coupled with seamless digital ordering. Begin your pristine dining journey directly from your table.')}
           </motion.p>
-          
+
           <motion.button initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.6 }}
             onClick={() => setModalType('table')}
             className="group flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-semibold text-sm hover:scale-105 transition-all duration-500 shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_60px_rgba(255,255,255,0.25)]">
