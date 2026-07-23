@@ -6,12 +6,8 @@ const LanguageContext = createContext();
 export const useLanguage = () => useContext(LanguageContext);
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguageState] = useState(null);
+  const [language, setLanguageState] = useState(() => localStorage.getItem('quickserve_language'));
   const [showOthers, setShowOthers] = useState(false);
-
-  useEffect(() => {
-    // Intentionally not loading from localStorage so it ALWAYS asks on reload
-  }, []);
 
   const setLanguage = (lang) => {
     setLanguageState(lang);

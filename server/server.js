@@ -13,6 +13,7 @@ const paymentRoutes = require('./routes/payments');
 const adminRoutes = require('./routes/admin');
 const tableRoutes = require('./routes/tables');
 const categoriesRoutes = require('./routes/categories');
+const reviewRoutes = require('./routes/reviews');
 const { initSocket } = require('./socket');
 
 const app = express();
@@ -49,6 +50,7 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/tables', tableRoutes);
 app.use('/api/categories', categoriesRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 // Health Check
 app.get('/api/health', (req, res) => {

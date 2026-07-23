@@ -59,55 +59,55 @@ const PaymentPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="bg-white/60 backdrop-blur-md px-4 py-4 sticky top-0 z-10 border-b border-gray-100 flex items-center">
-        <button onClick={() => navigate('/cart')} className="p-2 -ml-2 rounded-full hover:bg-gray-100 mr-2">
+    <div className="min-h-screen flex flex-col bg-[#111] text-white font-outfit" style={{ backgroundImage: 'radial-gradient(circle at top right, #1a1a1a, #0b0b0b)' }}>
+      <div className="bg-black/80 backdrop-blur-xl px-6 py-6 sticky top-0 z-40 border-b border-white/10 flex items-center shadow-lg">
+        <button onClick={() => navigate('/cart')} className="p-2 -ml-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors mr-3">
           <ArrowLeft size={24} />
         </button>
-        <span className="font-medium text-gray-500 text-sm">Checkout</span>
+        <span className="font-playfair text-2xl font-bold text-hotel-gold tracking-wide">Checkout</span>
       </div>
 
       <div className="p-4 flex-1">
-        <div className="bg-hotel-dark text-white rounded-3xl p-6 mb-6 relative overflow-hidden shadow-xl">
+        <div className="bg-gradient-to-br from-[#1a1a1a] to-black rounded-[2rem] p-8 mb-8 relative overflow-hidden luxury-shadow border border-hotel-gold/20">
           <div className="absolute top-[-20%] right-[-10%] w-32 h-32 bg-hotel-gold opacity-20 rounded-full blur-2xl"></div>
-          <p className="text-gray-400 text-sm mb-1">Amount to Pay</p>
-          <h2 className="text-4xl font-bold font-mono">₹{total.toFixed(2)}</h2>
-          <p className="text-xs text-gray-400 mt-2">Table {tableNumber}</p>
+          <p className="text-gray-400 text-xs uppercase tracking-widest font-bold mb-2">Amount to Pay</p>
+          <h2 className="text-5xl font-playfair font-black text-hotel-gold">₹{total.toFixed(2)}</h2>
+          <p className="text-xs text-gray-400 mt-3 uppercase tracking-widest font-bold bg-white/5 inline-block px-3 py-1 rounded-full border border-white/10">Table {tableNumber}</p>
         </div>
 
-        <h3 className="font-bold text-gray-800 mb-4 px-2">Select Payment Method</h3>
+        <h3 className="font-playfair text-xl font-bold text-white mb-6 px-2">Select Payment Method</h3>
         
         <div className="space-y-3">
           <label 
             onClick={() => setMethod('UPI')}
-            className={`flex items-center p-4 border rounded-2xl cursor-pointer transition-all ${method === 'UPI' ? 'border-hotel-gold bg-hotel-gold/10' : 'border-gray-200 bg-white/60 backdrop-blur-sm'}`}
+            className={`flex items-center p-4 border rounded-2xl cursor-pointer transition-all ${method === 'UPI' ? 'border-hotel-gold bg-hotel-gold/10 shadow-[0_0_20px_rgba(212,175,55,0.15)]' : 'border-white/10 bg-white/5 hover:bg-white/10'}`}
           >
-            <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 ${method === 'UPI' ? 'border-hotel-gold' : 'border-gray-300'}`}>
+            <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 ${method === 'UPI' ? 'border-hotel-gold' : 'border-white/20'}`}>
               {method === 'UPI' && <div className="w-2.5 h-2.5 bg-hotel-gold rounded-full"></div>}
             </div>
-            <div className="bg-blue-100 p-2 rounded-lg text-blue-600 mr-3"><Smartphone size={20} /></div>
+            <div className="bg-blue-500/20 p-3 rounded-xl text-blue-400 mr-4 border border-blue-500/20"><Smartphone size={20} /></div>
             <span className="font-semibold flex-1">UPI (GPay, PhonePe, Paytm)</span>
           </label>
 
           <label 
             onClick={() => setMethod('Card')}
-            className={`flex items-center p-4 border rounded-2xl cursor-pointer transition-all ${method === 'Card' ? 'border-hotel-gold bg-hotel-gold/10' : 'border-gray-200 bg-white'}`}
+            className={`flex items-center p-4 border rounded-2xl cursor-pointer transition-all ${method === 'Card' ? 'border-hotel-gold bg-hotel-gold/10 shadow-[0_0_20px_rgba(212,175,55,0.15)]' : 'border-white/10 bg-white/5 hover:bg-white/10'}`}
           >
-            <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 ${method === 'Card' ? 'border-hotel-gold' : 'border-gray-300'}`}>
+            <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 ${method === 'Card' ? 'border-hotel-gold' : 'border-white/20'}`}>
               {method === 'Card' && <div className="w-2.5 h-2.5 bg-hotel-gold rounded-full"></div>}
             </div>
-            <div className="bg-purple-100 p-2 rounded-lg text-purple-600 mr-3"><CardIcon size={20} /></div>
+            <div className="bg-purple-500/20 p-3 rounded-xl text-purple-400 mr-4 border border-purple-500/20"><CardIcon size={20} /></div>
             <span className="font-semibold flex-1">Credit / Debit Card</span>
           </label>
 
           <label 
             onClick={() => setMethod('Cash')}
-            className={`flex items-center p-4 border rounded-2xl cursor-pointer transition-all ${method === 'Cash' ? 'border-hotel-gold bg-hotel-gold/10' : 'border-gray-200 bg-white'}`}
+            className={`flex items-center p-4 border rounded-2xl cursor-pointer transition-all ${method === 'Cash' ? 'border-hotel-gold bg-hotel-gold/10 shadow-[0_0_20px_rgba(212,175,55,0.15)]' : 'border-white/10 bg-white/5 hover:bg-white/10'}`}
           >
-            <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 ${method === 'Cash' ? 'border-hotel-gold' : 'border-gray-300'}`}>
+            <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 ${method === 'Cash' ? 'border-hotel-gold' : 'border-white/20'}`}>
               {method === 'Cash' && <div className="w-2.5 h-2.5 bg-hotel-gold rounded-full"></div>}
             </div>
-            <div className="bg-green-100 p-2 rounded-lg text-green-600 mr-3"><Banknote size={20} /></div>
+            <div className="bg-green-500/20 p-3 rounded-xl text-green-400 mr-4 border border-green-500/20"><Banknote size={20} /></div>
             <div className="flex-1">
                <span className="font-semibold block">Cash - Pay at End</span>
                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Settle total bill after dining</span>
@@ -116,7 +116,7 @@ const PaymentPage = () => {
         </div>
 
         {error && (
-          <div className="mt-6 p-4 bg-red-100 text-red-600 rounded-xl text-sm font-medium border border-red-200">
+          <div className="mt-6 p-4 bg-red-500/10 text-red-400 rounded-2xl text-sm font-medium border border-red-500/30">
             <p>{error}</p>
             <button
               onClick={() => { setError(''); handlePayment(); }}
@@ -128,11 +128,11 @@ const PaymentPage = () => {
         )}
       </div>
 
-      <div className="p-4 bg-white border-t border-gray-100">
+      <div className="p-6 bg-black/80 backdrop-blur-xl border-t border-white/10 z-20 sticky bottom-0">
         <button 
           onClick={handlePayment}
           disabled={isProcessing}
-          className="w-full bg-hotel-dark text-hotel-gold py-4 rounded-xl font-bold hover:bg-black transition-colors disabled:opacity-50 flex justify-center items-center gap-2"
+          className="w-full bg-hotel-gold text-black py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-[#b8952a] transition-all disabled:opacity-50 flex justify-center items-center gap-3 luxury-shadow"
         >
           {isProcessing ? (
             <>

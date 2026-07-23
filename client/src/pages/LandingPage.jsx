@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useHotel } from '../context/HotelContext';
+import { useLanguage } from '../context/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Utensils, ArrowRight, UserCheck, ChefHat, X, Star } from 'lucide-react';
+import { Utensils, ArrowRight, UserCheck, ChefHat, X, Star, Globe } from 'lucide-react';
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const { setTableNumber, API_URL } = useHotel();
+  const { t, language, setLanguage } = useLanguage();
 
   const [modalType, setModalType] = useState(null); // 'table', 'admin', 'kitchen'
   const [email, setEmail] = useState('');
@@ -50,7 +52,7 @@ const LandingPage = () => {
           </button>
           
           <h3 className="text-2xl font-playfair font-bold text-white mb-8 text-center">
-            {modalType === 'table' ? 'Select Table' : `${modalType.charAt(0).toUpperCase() + modalType.slice(1)} Portal`}
+            {modalType === 'table' ? t('Select Table') : t(`${modalType.charAt(0).toUpperCase() + modalType.slice(1)} Portal`)}
           </h3>
           
           {modalType === 'table' ? (
@@ -70,7 +72,7 @@ const LandingPage = () => {
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-outfit focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all placeholder:text-gray-500" required />
               {authError && <p className="text-red-400 text-sm font-outfit text-center">{authError}</p>}
               <button type="submit" className="w-full bg-white text-black font-outfit font-bold rounded-xl py-3.5 hover:bg-gray-200 hover:scale-[1.02] transition-all duration-300">
-                Sign In
+                {t('Sign In')}
               </button>
             </form>
           )}
@@ -92,14 +94,33 @@ const LandingPage = () => {
             <span className="text-[9px] uppercase tracking-[0.2em] text-gray-400 block mt-1">Premium Dining</span>
           </div>
         </div>
-        <div className="flex gap-2">
+        <div className="flex items-center gap-4">
+          {/* Premium Language Dropdown */}
+          <div className="relative flex items-center">
+            <select 
+              value={language || 'en'} 
+              onChange={(e) => setLanguage(e.target.value)}
+              className="appearance-none bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-full pl-8 pr-5 py-1.5 text-xs font-semibold focus:outline-none focus:border-purple-500 transition-all duration-300 font-outfit cursor-pointer"
+            >
+              <option value="en" className="bg-[#050505] text-white">EN</option>
+              <option value="ta" className="bg-[#050505] text-white">தமிழ்</option>
+              <option value="hi" className="bg-[#050505] text-white">हिंदी</option>
+              <option value="te" className="bg-[#050505] text-white">తెలుగు</option>
+              <option value="ml" className="bg-[#050505] text-white">മലയാളം</option>
+              <option value="kn" className="bg-[#050505] text-white">ಕನ್ನಡ</option>
+            </select>
+            <div className="pointer-events-none absolute left-2.5 flex items-center text-purple-400">
+              <Globe size={11} />
+            </div>
+          </div>
+
           <button onClick={() => { setModalType('kitchen'); setEmail('kitchen@quickserve.com'); setPassword(''); }} 
             className="text-xs font-medium text-gray-400 hover:text-white flex items-center gap-2 px-4 py-2 rounded-full hover:bg-white/10 transition-all">
-            <ChefHat size={14} /> Kitchen
+            <ChefHat size={14} /> {t('Kitchen')}
           </button>
           <button onClick={() => { setModalType('admin'); setEmail('admin@quickserve.com'); setPassword(''); }} 
             className="text-xs font-medium text-gray-400 hover:text-white flex items-center gap-2 px-4 py-2 rounded-full hover:bg-white/10 transition-all">
-            <UserCheck size={14} /> Admin
+            <UserCheck size={14} /> {t('Admin')}
           </button>
         </div>
       </nav>
@@ -122,19 +143,19 @@ const LandingPage = () => {
           
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }}
             className="font-playfair text-5xl md:text-7xl font-semibold leading-[1.1] mb-6 text-white tracking-tight">
-            A Symphony of <br />
-            <span className="text-gray-400 italic">Taste & Elegance</span>
+            {t('A Symphony of')} <br />
+            <span className="text-gray-400 italic">{t('Taste & Elegance')}</span>
           </motion.h1>
           
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.4 }}
             className="text-gray-400 text-sm md:text-base font-light tracking-wide max-w-xl mb-12 leading-relaxed">
-            Experience culinary mastery coupled with seamless digital ordering. Begin your pristine dining journey directly from your table.
+            {t('Experience culinary mastery coupled with seamless digital ordering. Begin your pristine dining journey directly from your table.')}
           </motion.p>
           
           <motion.button initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.6 }}
             onClick={() => setModalType('table')}
             className="group flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-semibold text-sm hover:scale-105 transition-all duration-500 shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_60px_rgba(255,255,255,0.25)]">
-            Explore Menu <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            {t('Explore Menu')} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </motion.button>
         </div>
       </section>
@@ -150,8 +171,8 @@ const LandingPage = () => {
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: i * 0.1 }} viewport={{ once: true }}
               className="p-8 border border-white/5 rounded-3xl bg-white/[0.01] hover:bg-white/[0.03] transition-colors relative group overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <h3 className="font-playfair text-xl mb-3 text-gray-200">{f.t}</h3>
-              <p className="text-gray-500 font-light text-sm leading-relaxed">{f.d}</p>
+              <h3 className="font-playfair text-xl mb-3 text-gray-200">{t(f.t)}</h3>
+              <p className="text-gray-500 font-light text-sm leading-relaxed">{t(f.d)}</p>
             </motion.div>
           ))}
         </div>
@@ -160,7 +181,7 @@ const LandingPage = () => {
       {/* Footer */}
       <footer className="py-12 text-center border-t border-white/5 relative z-10">
         <p className="font-playfair text-xl text-gray-300 mb-2 mt-4 tracking-wide">QuickServe</p>
-        <p className="text-gray-600 text-xs tracking-wider uppercase">© {new Date().getFullYear()} Premium Dining</p>
+        <p className="text-gray-600 text-xs tracking-wider uppercase">© {new Date().getFullYear()} {t('Premium Dining')}</p>
       </footer>
 
       <AnimatePresence>

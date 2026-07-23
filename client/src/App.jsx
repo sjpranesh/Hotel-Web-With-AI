@@ -12,6 +12,7 @@ import SuccessPage from './pages/SuccessPage';
 import RunningBill from './pages/RunningBill';
 import KitchenDashboard from './pages/KitchenDashboard';
 import AdminDashboard from './pages/AdminDashboard';
+import ReviewPage from './pages/ReviewPage';
 
 function App() {
   return (
@@ -44,6 +45,9 @@ function App() {
 
               {/* Admin Dashboard */}
               <Route path="/admin" element={<AdminDashboard />} />
+
+              {/* Review Page */}
+              <Route path="/review" element={<ReviewPage />} />
 
             </Routes>
           </div>

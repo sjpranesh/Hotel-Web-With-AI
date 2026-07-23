@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useHotel } from '../context/HotelContext';
-import { CheckCircle, Clock, ChefHat, CheckSquare } from 'lucide-react';
+import { CheckCircle, Clock, ChefHat, CheckSquare, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const SuccessPage = () => {
@@ -33,6 +33,7 @@ const SuccessPage = () => {
       });
       socket.on('session_closed', () => {
         setSession(null);
+        navigate('/review');
       });
     }
 
@@ -63,6 +64,8 @@ const SuccessPage = () => {
       });
       const data = await res.json();
       setSession(data);
+      localStorage.removeItem('quickserve_table');
+      navigate('/');
     } catch (err) {
       alert('Failed to request bill');
     }
@@ -198,6 +201,14 @@ const SuccessPage = () => {
               )}
             </>
           )}
+
+          <button 
+            onClick={() => navigate('/review')}
+            className="w-full bg-white/10 hover:bg-white/20 text-hotel-gold py-4 rounded-xl font-bold transition-colors border border-hotel-gold/30 text-sm uppercase tracking-widest flex items-center justify-center gap-2"
+          >
+            <Star size={18} className="fill-hotel-gold text-hotel-gold" />
+            Rate Experience / Leave Review
+          </button>
 
           {(!session || currentOrder.paymentMethod !== 'Cash') && (
              <button 

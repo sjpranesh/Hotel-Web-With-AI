@@ -21,9 +21,11 @@ router.post('/', async (req, res) => {
       const menuDbItem = await MenuItem.findById(item.menuItem);
       
       let basePrepTime = 10; // Default
-      if (menuDbItem.categoryType === 'DRINK') basePrepTime = 2;
-      else if (menuDbItem.categoryType === 'FAST') basePrepTime = 5;
-      else if (menuDbItem.categoryType === 'MAIN') basePrepTime = 10;
+      if (menuDbItem) {
+        if (menuDbItem.categoryType === 'DRINK') basePrepTime = 2;
+        else if (menuDbItem.categoryType === 'FAST') basePrepTime = 5;
+        else if (menuDbItem.categoryType === 'MAIN') basePrepTime = 10;
+      }
 
       totalPredictedTime += basePrepTime * item.quantity;
       return item;
